@@ -1,0 +1,30 @@
+"""
+I need to define an user type return it
+When I have '!' it means the filed is required
+"""
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    role: String!
+}
+"""
+The users query means that it will return an array (even if it is empty)
+and the elements must be an User
+
+The user query have an id param that is required and returns an user.
+The return is not required because if the id doesnt exists than the response is null
+"""
+type Query {
+    users(role: String): [User!]!
+    user(id: ID!): User
+}
+
+"""
+The createUser mutation receives a name and email and returns that user
+"""
+type Mutation {
+    createUser(name: String!, email: String!, role: String!): User
+    updateUser(id: ID!, name: String, email: String, role: String): User
+    deleteUser(id: ID!): [User!]!
+}
